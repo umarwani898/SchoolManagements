@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model IEnumerable<Student>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-3">
+    <h1 class="h3 mb-0 text-gray-800">Students</h1>
+    <div class="p-2 flex-filltext-right">
+        <a asp-controller="Students" asp-action="Create" class="btn btn-success mb-2">Create</a>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <form method="get" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="class" class="sr-only">Class</label>
+                <input type="text" id="class" name="searchClass" value="@ViewData["CurrentClass"]" class="form-control" placeholder="Class" />
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="name" class="sr-only">Name</label>
+                <input type="text" id="name" name="searchName" value="@ViewData["CurrentName"]" class="form-control" placeholder="Name" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search</button>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Class</th>
+            <th>Roll Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(student.Image))
+                    {
+                        <img src="~/images/@student.Image" alt="Student Image" width="50" height="50" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>@student.Name</td>
+                <td>@student.Age</td>
+                <td>@student.Sex</td>
+                <td>@student.Class</td>
+                <td>@student.RollNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData["ErrorMessage"]
+    </div>
+}

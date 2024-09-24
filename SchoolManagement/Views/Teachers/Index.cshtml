@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model IEnumerable<SchoolManagement.Models.Teacher>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-3">
+    <h1 class="h3 mb-0 text-gray-800">Teachers</h1>
+    <div class="p-2 flex-filltext-right">
+        <a asp-controller="Teachers" asp-action="Create" class="btn btn-success mb-2">Create</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(teacher.Image))
+                    {
+                        <img src="~/images/@teacher.Image" alt="Teacher Image" width="50" height="50" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>@teacher.Name</td>
+                <td>@teacher.Age</td>
+                <td>@teacher.Sex</td>
+            </tr>
+        }
+    </tbody>
+</table>

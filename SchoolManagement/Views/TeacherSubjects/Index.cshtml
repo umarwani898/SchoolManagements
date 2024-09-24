@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model IEnumerable<SchoolManagement.Models.TeacherSubjectDTO>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-3">
+    <h1 class="h3 mb-0 text-gray-800">Teacher-Subject Assignments</h1>
+    <div class="p-2 flex-filltext-right">
+        <a asp-controller="TeacherSubjects" asp-action="Create" class="btn btn-success mb-2">Create</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Teacher Name</th>            
+            <th>Subject Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TeacherName</td>                
+                <td>@item.SubjectName</td>
+            </tr>
+        }
+    </tbody>
+</table>
